@@ -29,9 +29,6 @@ export default function OperatorButtons() {
         <div className="operator-buttons">
             <Grid
                 container
-                direction="column"
-                // justifyContent="center"
-                // alignItems="center"
             >
                 <OtherButton value={ "÷" } onClick={ divide } />
                 <OtherButton value={ "✕" } onClick={ multiply } />
