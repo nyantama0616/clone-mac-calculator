@@ -1,39 +1,39 @@
 import React, {useState} from "react";
 
-type CalcReturnValue = {
-    leftValue: string
-    rightValue: string
-    sendValue: (value: string) => void
-};
+// type CalcReturnValue = {
+//     leftValue: string
+//     rightValue: string
+//     sendValue: (value: string) => void
+// };
 
-export default function useCalculator(): CalcReturnValue {
-    const [leftValue, setLeftValue] = useState<string>("0");
-    const [rightValue, setRightValue] = useState<string>("0");
-    const [operator, setOperator] = useState<Function>(() => { });
+// export default function useCalculator(): CalcReturnValue {
+//     const [leftValue, setLeftValue] = useState<string>("0");
+//     const [rightValue, setRightValue] = useState<string>("0");
+//     const [operator, setOperator] = useState<Function>(() => { });
     
-    function divide() {
+//     function divide() {
 
-    }
+//     }
 
-    function multiply() {
+//     function multiply() {
 
-    }
+//     }
 
-    function minus() {
+//     function minus() {
 
-    }
+//     }
 
-    function plus() {
+//     function plus() {
 
-    }
+//     }
 
-    function equal() {
+//     function equal() {
 
-    }
+//     }
 
-    function sendValue(value: string) {
+//     function sendValue(value: string) {
 
-    }
+//     }
 
-    return { leftValue, rightValue, sendValue };
-}
+//     return { leftValue, rightValue, sendValue };
+// }

@@ -1,13 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import "../../styles/molecules/Monitor.scss";
+import { CalculatorContext } from "../../hooks/providers/CalculatorProvider";
 
-type MonitorProps = {
-    value: string;
-};
-export default function Monitor({value}: MonitorProps) {
+export default function Monitor() {
+    const calcCtx = useContext(CalculatorContext);
+
     return (
         <div className="monitor">
-            <h1>{value}</h1>
+            <h1>{calcCtx.displayValue}</h1>
         </div>
     )
 }
