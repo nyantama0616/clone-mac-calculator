@@ -1,4 +1,5 @@
 import React from "react";
+import Monitor from "../molecules/Monitor";
 import NumberButtons from "../molecules/NumberButtons";
 import OtherButtons from "../molecules/OtherButtons";
 import OperatorButtons from "../molecules/OperatorButtons";
@@ -14,6 +15,7 @@ function Calculator() {
                 // justifyContent={"space-around"}
                 // justifyContent={"stretch"}
             >
+                <Grid item xs={12}><Monitor /></Grid>
                 <Grid
                     container
                     // direction={"column"}
