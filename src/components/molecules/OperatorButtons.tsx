@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Grid } from "@mui/material";
 import "../../styles/molecules/OperatorButtons.scss";
-import ButtonBase from "./ButtonBase";
+import ButtonBase from "./Button";
 import AspectRatio from "@mui/joy/AspectRatio";
 
 export default function OperatorButtons() {
@@ -48,7 +48,7 @@ function OtherButton({value, onClick}: OtherButtonProps) {
     return (
         <Grid item xs={12}>
             <AspectRatio ratio="1.41/1">
-                <ButtonBase value={value} onClick={onClick} />
+                <ButtonBase value={value} />
             </AspectRatio>
         </Grid>
     );

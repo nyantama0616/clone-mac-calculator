@@ -1,10 +1,8 @@
 import React from "react";
-import { Button } from "@mui/material";
 import { Grid } from "@mui/material";
 import "../../styles/molecules/NumberButtons.scss";
-// import { AspectRatio } from "@mui/joy";
 import AspectRatio from "@mui/joy/AspectRatio";
-import ButtonBase from "./ButtonBase";
+import Button from "./Button";
 
 export default function NumberButtons() {
     const buttons1To9 = [...Array(9)].map((_, i) => {
@@ -21,8 +19,6 @@ export default function NumberButtons() {
             <Grid
                 container
                 direction="column"
-                // justifyContent="center"
-                // alignItems="center"
             >
                 <Row values={["7", "8", "9"]} onClick={onClick}/>
                 <Row values={["4", "5", "6"]} onClick={onClick}/>
@@ -35,12 +31,12 @@ export default function NumberButtons() {
                 >
                     <Grid item xs={8}>
                         <AspectRatio ratio="2.82/1">
-                            <ButtonBase value={"0"} onClick={onClick} />
+                            <Button value={"0"} />
                         </AspectRatio>
                     </Grid>
                     <Grid item xs={4}>
                         <AspectRatio ratio="1.41/1">
-                            <ButtonBase value={"."} onClick={onClick} />
+                            <Button value={"."}/>
                         </AspectRatio>
                     </Grid>
                 </Grid>
@@ -57,21 +53,11 @@ function NumberButton({value, onClick}: NumberButtonProps) {
     return (
         <Grid item xs={4}>
             <AspectRatio ratio="1.41/1">
-                <ButtonBase value={value} onClick={onClick} />
+                <Button value={value} />
             </AspectRatio>
         </Grid>
     );
 }
-// function NumberZeroButton({value, onClick}: NumberButtonProps) {
-//     return (
-//         <Grid item xs={4}>
-//             <AspectRatio ratio="2.82/1">
-//                 <ButtonBase value={value} onClick={onClick} />
-//             </AspectRatio>
-//         </Grid>
-//     );
-// }
-
 
 type RowProps = {
     values: string[];
@@ -82,8 +68,6 @@ function Row({ values, onClick }: RowProps) {
         <Grid
             container
             item
-            // justifyContent={"space-around"}
-            // spacing={2}
             xs={3}
         >
             <NumberButton value={values[0]} onClick={onClick} />

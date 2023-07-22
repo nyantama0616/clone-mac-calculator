@@ -3,32 +3,30 @@ import Monitor from "../molecules/Monitor";
 import NumberButtons from "../molecules/NumberButtons";
 import OtherButtons from "../molecules/OtherButtons";
 import OperatorButtons from "../molecules/OperatorButtons";
+import useCalculator from "../../hooks/useCalculator";
 import { Grid } from "@mui/material";
 import "../../styles/molecules/OtherButtons.scss";
 import "../../styles/molecules/NumberButtons.scss";
 
 function Calculator() {
+    const calc = useCalculator();
+    
     return (
         <div className="calculator">
             <Grid
                 container
-                // justifyContent={"space-around"}
-                // justifyContent={"stretch"}
             >
-                <Grid item xs={12}><Monitor /></Grid>
+                <Grid item xs={12}><Monitor value={"0"} /></Grid>
                 <Grid
                     container
-                    // direction={"column"}
                     item
                     xs={9}
                 >
                     <Grid item xs={12}>
                         <OtherButtons/>
-                        {/* <div className="other-buttons">1</div> */}
                     </Grid>
                     <Grid item xs={12}>
                         <NumberButtons />
-                        {/* <div className="number-buttons">2</div> */}
                     </Grid>
                 </Grid>
                 <Grid item xs={3}>

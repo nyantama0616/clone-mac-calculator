@@ -1,10 +1,13 @@
 import React from "react";
 import "../../styles/molecules/Monitor.scss";
 
-export default function Monitor() {
+type MonitorProps = {
+    value: string;
+};
+export default function Monitor({value}: MonitorProps) {
     return (
         <div className="monitor">
-            <h1>100</h1>
+            <h1>{value}</h1>
         </div>
     )
 }
