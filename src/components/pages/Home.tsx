@@ -23,7 +23,7 @@ export function Home() {
                 <Calculator/>
             </AspectRatio>
             {/* </Container> */}
-            <GridPractice />
+            {/* <GridPractice /> */}
         </div>
     )
 }
