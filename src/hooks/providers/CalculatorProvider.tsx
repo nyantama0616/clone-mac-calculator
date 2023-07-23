@@ -1,6 +1,7 @@
 import React, { useState, createContext, useEffect } from "react";
 
-export const CalculatorContext = createContext<CalcReturnValue>({state: {left: "", right: "", displayValue: "", operator: () => {}}, sendValue: () => {}});
+// export const CalculatorContext = createContext<CalcReturnValue>({state: {left: "", right: "", displayValue: "", operator: () => {}}, sendValue: () => {}});
+export const CalculatorContext = createContext<CalcReturnValue>({displayValue: "", sendValue: () => {}});
 
 type CalculatorProviderProps = {
     children: React.ReactNode
@@ -20,12 +21,11 @@ type CalcState = {
     operator: () => void
 };
 type CalcReturnValue = {
-    state: CalcState
+    displayValue: string
     sendValue: (value: string) => void
 };
 function useCalculator(): CalcReturnValue {
     const initialOperator = () => {
-        console.log("init!");
         setState(prev => {
             const newState = { ...prev };
             newState.left = prev.right;
@@ -44,7 +44,6 @@ function useCalculator(): CalcReturnValue {
     const [state, setState] = useState<CalcState>(initialState);
 
     function allClear() {
-        // console.log("all clear");
         setState(initialState);
     }
 
@@ -93,7 +92,6 @@ function useCalculator(): CalcReturnValue {
         setState(prev => {
             const leftValueParsed = parseFloat(prev.left);
             const rightValueParsed = parseFloat(prev.right);
-            // if (rightValueParsed === 0) return prev; //いる？
 
             const newValue = (leftValueParsed / rightValueParsed).toString();
             const newState = { ...prev };
@@ -216,5 +214,5 @@ function useCalculator(): CalcReturnValue {
         }
     }
 
-    return { state, sendValue };
+    return { displayValue: state.displayValue, sendValue };
 }

@@ -7,8 +7,7 @@ export default function Monitor() {
 
     return (
         <div className="monitor">
-            {/* <h1>{calcCtx.displayValue}</h1> */}
-            <h1>{calcCtx.state.displayValue}</h1>
+            <h1>{calcCtx.displayValue}</h1>
         </div>
     )
 }
