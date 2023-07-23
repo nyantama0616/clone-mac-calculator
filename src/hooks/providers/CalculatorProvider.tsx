@@ -1,6 +1,5 @@
 import React, { useState, createContext, useEffect } from "react";
 
-// export const CalculatorContext = createContext<CalcReturnValue>({state: {left: "", right: "", displayValue: "", operator: () => {}}, sendValue: () => {}});
 export const CalculatorContext = createContext<CalcReturnValue>({displayValue: "", sendValue: () => {}});
 
 type CalculatorProviderProps = {
@@ -60,14 +59,16 @@ function useCalculator(): CalcReturnValue {
     }
 
     function percent() {
-        const value = parseFloat(state.right);
-        if (!Number.isNaN(value)) {
+        setState(prev => {
+            const value = parseFloat(state.right);
+            if (Number.isNaN(value)) return prev; //rightが空文字列の場合を考慮
+
             const newValue = (0.01 * value).toString();
-            const newState = state;
+            const newState = { ...state };
             newState.right = newValue;
             newState.displayValue = newValue;
-            setState(newState);
-        }
+            return newState;
+        });
     }
 
     function dot() {
@@ -88,60 +89,34 @@ function useCalculator(): CalcReturnValue {
         setState(newState);
     }
 
-    function divide() {
+    function operatorCommon(f: (a: number, b: number) => number) {
         setState(prev => {
             const leftValueParsed = parseFloat(prev.left);
             const rightValueParsed = parseFloat(prev.right);
 
-            const newValue = (leftValueParsed / rightValueParsed).toString();
+            const newValue = (f(leftValueParsed, rightValueParsed)).toString();
             const newState = { ...prev };
             newState.left = newValue;
             newState.right = "";
             newState.displayValue = newValue;
             return newState;
         });
+    }
+
+    function divide() {
+        operatorCommon((a, b) => { return a / b });
     }
 
     function multiply() {
-        setState(prev => {
-            const leftValueParsed = parseFloat(prev.left);
-            const rightValueParsed = parseFloat(prev.right);
-
-            const newValue = (leftValueParsed * rightValueParsed).toString();
-            const newState = { ...prev };
-            newState.left = newValue;
-            newState.right = "";
-            newState.displayValue = newValue;
-            return newState;
-        });
+        operatorCommon((a, b) => { return a * b });
     }
 
     function minus() {
-        setState(prev => {
-            const leftValueParsed = parseFloat(prev.left);
-            const rightValueParsed = parseFloat(prev.right);
-
-            const newValue = (leftValueParsed - rightValueParsed).toString();
-            const newState = { ...prev };
-            newState.left = newValue;
-            newState.right = "";
-            newState.displayValue = newValue;
-            return newState;
-        });
+        operatorCommon((a, b) => { return a - b });
     }
 
     function plus() {
-        setState(prev => {
-            const leftValueParsed = parseFloat(prev.left);
-            const rightValueParsed = parseFloat(prev.right);
-
-            const newValue = (leftValueParsed + rightValueParsed).toString();
-            const newState = { ...prev };
-            newState.left = newValue;
-            newState.right = "";
-            newState.displayValue = newValue;
-            return newState;
-        });
+        operatorCommon((a, b) => { return a + b });
     }
 
     function equal() {
